@@ -26,18 +26,18 @@ else{
 	if((**bst)->key > key){//go right
 			(**bst) = (**bst)->right;
 			}//if function
-			else if((**bst)->key < key){ // go left
-			(**bst) = (**bst)->left;
-			}
-			else if((**bst)->key == key){
-				;//identical node already exist
-			}
-			else{ //must be NULL
-				if ((*bst) == NULL){
-					(**bst).key = key; //root.key 
-					(**bst).data = data;//root.data 
-					(**bst).left = (BStree_node)malloc(sizeof(BStree_node*));//root.key 
-					(**bst).right = (BStree_node)malloc(sizeof(BStree_node*));//root.key 
+	else if((**bst)->key < key){ // go left
+		(**bst) = (**bst)->left;
+		}
+	else if((**bst)->key == key){
+		;//identical node already exist
+		}
+	else{ //must be NULL
+		if ((*bst) == NULL){ //current node is NULL
+				(**bst).key = key; //root.key 
+				(**bst).data = data;//root.data 
+				(**bst).left = (BStree_node)malloc(sizeof(BStree_node*));//root.key 
+				(**bst).right = (BStree_node)malloc(sizeof(BStree_node*));//root.key 
 				} 
 			}
 		}// while function
