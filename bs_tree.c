@@ -33,7 +33,7 @@ bs_tree_insert_node(*(bst), key, data);
 	}//bs_tree_insert function
 }
 //helping
-void bs_tree_insert_node(Bst_Node *node, Key key, Data_Item data){
+void bs_tree_insert_node(struct Bst_Node *node, Key key, Data_Item data){
 
 if(node == NULL){
 //current node is NULL
@@ -43,7 +43,7 @@ node->data = data;//root.data
 node->left = (BStree_node*)malloc(sizeof(BStree_node));//root.key 
 node->right = (BStree_node*)malloc(sizeof(BStree_node));//root.key 
 }
-else if(key_comp(node.key, key) == 1){//go right
+else if(key_comp(node->key, key) == 1){//go right
 bs_tree_insert_node(node->right, key, data);
 }//if function
 else if(key_comp(node->key, key) == -1){ // go left
