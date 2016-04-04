@@ -90,11 +90,19 @@ inorder_bs_tree_traversal(*node.right);
 
 
 void bs_tree_traversal(BStree bst){
-
 inorder_bs_tree_traversal((**bst));
-
-
 }
 
 
+void bs_tree_free(BStree bst){
+bs_tree_free_node((**bst));
+}
 
+void bs_tree_free_node(struct Bst_Node node){
+	if (node == NULL)
+		return ;
+bs_tree_free_node(*node.left);
+bs_tree_free_node(*node.right);
+
+free(node);
+}
