@@ -20,36 +20,39 @@ return bst;
 void bs_tree_insert(BStree bst, Key key, Data_Item data){
 
 if((*bst) == NULL){ // if root is NULL
+	(*bst) = (BStree_node*)malloc(sizeof(BStree_node));
   (**bst).key = key; //root.key 
-(**bst).data = data;//root.data 
-(**bst).left = (BStree_node*)malloc(sizeof(BStree_node));//root.key 
-(**bst).right = (BStree_node*)malloc(sizeof(BStree_node));//root.key 
+	(**bst).data = data;//root.data 
+	(**bst).left = (BStree_node*)malloc(sizeof(BStree_node));//root.key 
+	(**bst).right = (BStree_node*)malloc(sizeof(BStree_node));//root.key 
 }
 
 else{
 //using method recursively bs_tree_insert_node
-bs_tree_insert_node((**bst), key, data);
-}//bs_tree_insert function
+bs_tree_insert_node(*(bst), key, data);
+	}//bs_tree_insert function
 }
 //helping
-void bs_tree_insert_node(struct Bst_Node node, Key key, Data_Item data){
+void bs_tree_insert_node(Bst_Node *node, Key key, Data_Item data){
 
-if(key_comp(node.key, key) == 1){//go right
-bs_tree_insert_node(*node.right, key, data);
-}//if function
-else if(key_comp(node.key, key) == -1){ // go left
-bs_tree_insert_node(*node.left, key, data);
+if(node == NULL){
+//current node is NULL
+node = (BStree_node*)malloc(sizeof(BStree_node));
+node->key = key; //root.key 
+node->data = data;//root.data 
+node->left = (BStree_node*)malloc(sizeof(BStree_node));//root.key 
+node->right = (BStree_node*)malloc(sizeof(BStree_node));//root.key 
 }
-else if(key_comp(node.key, key) == 0){
+else if(key_comp(node.key, key) == 1){//go right
+bs_tree_insert_node(node->right, key, data);
+}//if function
+else if(key_comp(node->key, key) == -1){ // go left
+bs_tree_insert_node(node->left, key, data);
+}
+else{
 ;//identical node already exist
 }
-else{ //must be NULL
-//current node is NULL
-node.key = key; //root.key 
-node.data = data;//root.data 
-node.left = (BStree_node*)malloc(sizeof(BStree_node));//root.key 
-node.right = (BStree_node*)malloc(sizeof(BStree_node));//root.key 
-}
+
 }
 
 
@@ -89,20 +92,21 @@ inorder_bs_tree_traversal(*node.right);
 }
 
 
-void bs_tree_traversal(BStree bst){
-inorder_bs_tree_traversal((**bst));
-}
+// void bs_tree_traversal(BStree bst){
+// inorder_bs_tree_traversal((**bst));
+// }
 
 
-void bs_tree_free(BStree bst){
-bs_tree_free_node((**bst));
-}
+// void bs_tree_free(BStree bst){
+// bs_tree_free_node((**bst));
+// }
 
-void bs_tree_free_node(struct Bst_Node node){
-	if (node == NULL)
-		return ;
-bs_tree_free_node(*node.left);
-bs_tree_free_node(*node.right);
+// void bs_tree_free_node(struct Bst_Node node){
+// 	if (node == NULL)
+// 		return ;
+// bs_tree_free_node(*node.left);
+// bs_tree_free_node(*node.right);
 
-free(node);
-}
+// free(node);
+// }
+
